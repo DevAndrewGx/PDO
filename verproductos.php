@@ -13,8 +13,21 @@
 </head>
 <body>
     <h1>Mis productos</h1>
+
+    <div>
+        <form action="" method="gedt">
+            <input type="text" name="buscar">
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
+
     <?php
-        cargar();
+        if(isset($_GET['buscar'])) {
+            buscar($_GET['buscar']);
+        }else { 
+            cargar();
+        }
+        
      ?>
 
      <!-- new product -->

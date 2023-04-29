@@ -42,6 +42,69 @@
 
         public function eliminarProducto($arg_id_producto) {
             $modelo = new Conexion();
+            $conexion = $modelo -> get_conexion();
+            $sql = "DELETE FROM productos where Id_producto = :Id_producto";
+
+            $statement = $conexion -> prepare($sql);
+            $statement-> bindParam(':Id_producto', $arg_id_producto);
+            // $statement->execute($sql);
+
+            if(!$statement) {
+                return "Error it can'delete item";
+            }else  {
+                $statement->execute();
+                return "Item deleted correctly";
+            }
+        }
+
+        public function buscarProductos($arg_nombre) { 
+            $rows = null;
+            $model = new Conexion();
+            $conexion = $model -> get_conexion();
+            $nombre = "%".$arg_nombre."%";
+            $sql = "SELECT * FROM productos WHERE nombre LIKE :nombre";
+            $statement = $conexion -> prepare($sql);
+            $statement ->bindParam(":nombre", $nombre);
+            $statement -> execute();
+            
+            while($response = $statement->fetch()) {
+                $rows[] = $response;
+            }
+
+            return $rows;    
+        }
+
+        public function cargarProductos($arg_id_producto) { 
+
+            $rows = null;
+            $model = new Conexion();
+            $conexion = $model -> get_conexion();
+            $sql = "SELECT * FROM productos WHERE Id_producto = :Id_producto";
+            $statement = $conexion -> prepare($sql);
+            $statement -> bindParam(":Id_producto", $arg_id_producto);
+            $statement -> execute();
+            
+            while($response = $statement->fetch()) {
+                $rows[] = $response;
+            }
+
+            return $rows;
+        }
+
+        public function modificarProducto($arg_campo, $arg_valor, $arg_id_producto) { 
+            $model = new Conexion();
+            $conexion = $model -> get_conexion();
+            $sql = "UPDATE productos SET $arg_campo = :valor WHERE Id_producto  = :Id_producto";
+            $statement = $conexion -> prepare($sql);
+            $statement ->bindParam(":valor",$arg_valor);
+            $statement -> bindParam(":Id_producto",$arg_id_producto);
+
+            if(!$statement) { 
+                return "Error, It coluldn't update the product";
+            }else { 
+                $statement ->execute();
+                return "Item updated succesfuly";
+            }
         }
     }
 
