@@ -19,9 +19,10 @@
             echo "<td>".$fila['descripcion']."</td>";
             echo "<td>".$fila['categoria']."</td>";
             echo "<td>".$fila['precio']."</td>";
+            echo "<td><a href='Controlador/eliminar.php?id_producto=".$fila['Id_producto']."'>Eliminar</td>";
+            echo "<td><a href='Controlador/modificar.php?id_producto=".$fila['Id_producto']."'>Modificar</td>";
             echo "</tr>";
         }
         echo "</table>";
-
    }
 ?>

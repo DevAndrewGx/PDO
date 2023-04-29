@@ -39,6 +39,10 @@
 
             return $rows;
         }
+
+        public function eliminarProducto($arg_id_producto) {
+            $modelo = new Conexion();
+        }
     }
 
 ?>
