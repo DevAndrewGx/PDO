@@ -1,11 +1,11 @@
 <?php
     class Consultas{
-        public function addProducs($arg_name, $arg_description, $arg_category, $arg_price) {
+        public function insertarProductos($arg_name, $arg_description, $arg_category, $arg_price) {
             $model = new Conexion();
-            $conexion = model -> get_conexion();
+            $conexion = $model -> get_conexion();
 
             //Query
-            $sql = "INSERT INTO productos (nombre, descripcion, categoria, precio) values (:nombre, :descripcion, :categoriaj, :precio)";
+            $sql = "INSERT INTO productos (nombre, descripcion, categoria, precio) values (:nombre, :descripcion, :categoria, :precio)";
 
             // Let's prepare the query
             $statement = $conexion -> prepare($sql);
@@ -20,10 +20,9 @@
             if(!$statement) {
                 return "Error is not posible to create the field";
             }else { 
-                $statement->execute();
-                return "Register succesfuly"
+                $statement ->execute();
+                return "Register succesfuly";
             }
-
         }
 
         public function reloadProducts() { 
@@ -41,4 +40,5 @@
             return $rows;
         }
     }
+
 ?>

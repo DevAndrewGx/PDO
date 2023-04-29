@@ -4,7 +4,7 @@
         public function get_conexion() { 
             //User root
             $user = "root";
-            $password = "1234";
+            $password = "";
             $host = "localhost";
             $db = "db_sistema";
             // We create a new instance for PDO is the conexion.
